@@ -1,1 +1,1 @@
-The assignments(Stanford CS1016B Winter 2018)
+The assignments(Stanford CS106B Winter 2018)
