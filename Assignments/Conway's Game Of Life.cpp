@@ -8,6 +8,10 @@
 class Solution {
     public:
         void gameOfLife(std::vector<std::vector<int> >& board) {
+            if (board.empty() || board[0].empty()) {
+                return;
+            }
+
             int rows = board.size();  //获取棋盘的行数
             int cols = board[0].size();  //获取棋盘的列数
 
@@ -22,14 +26,14 @@ class Solution {
                     if (board[i][j]==1) {
                         //如果周围活细胞少于2个或多于3个，则该活细胞死亡
                         if (liveNeighbours<2||liveNeighbours>3) {
-                            board[i][j]=0;
+                            nextBoard[i][j]=0;
                         }
                     }
                     //如果当前细胞是死细胞
                     else {
                         //如果周围活细胞恰好为3个，死细胞复活
                         if (liveNeighbours==3) {
-                            board[i][j]=1;
+                            nextBoard[i][j]=1;
                         }
                     }
                 }
@@ -39,8 +43,8 @@ class Solution {
         }
 
     private:
-         //countLiveNeighbours用于计算指定位置周围的活细胞数量
-        int countLiveNeighbours(std::vector<std::vector<int> >& board, int row, int col) {
+        //countLiveNeighbours用于计算指定位置周围的活细胞数量
+        int countLiveNeighbours(const std::vector<std::vector<int> >& board, int row, int col) {
             int liveCount=0;
             //定义8个方向的偏移量，分别为左上、上、右上、左、右、左下、下、右下
             int directions[8][2]={{-1,-1},{-1,0},{-1,1},{0,-1},{0,1},{1,-1},{1,0},{1,1}};
